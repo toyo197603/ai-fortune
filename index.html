@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Fortune | あなたの未来を占う</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#10112d,#392052);color:white;font-family:sans-serif;text-align:center;min-height:100vh;padding:55px 20px}
+h1{font-size:36px;color:#f6d88b}
+p{line-height:1.8}
+.card{max-width:420px;margin:35px auto;padding:28px 22px;background:#ffffff12;border:1px solid #d6b96d;border-radius:20px}
+input,select,button{width:100%;padding:15px;margin:10px 0;border:0;border-radius:10px;font-size:16px}
+button{background:#e8c574;color:#251b36;font-weight:bold}
+#result{margin-top:20px;line-height:1.9;white-space:pre-line}
+</style>
+</head>
+<body>
+<div style="font-size:55px">🔮</div>
+<h1>AI FORTUNE</h1>
+<p>あなたの未来に、光を。</p>
+<div class="card">
+<h2>運命の扉を開く</h2>
+<input id="name" placeholder="あなたのお名前">
+<input id="birthday" type="date">
+<select id="theme">
+<option value="恋愛運">恋愛運</option>
+<option value="仕事運">仕事運</option>
+<option value="金運">金運</option>
+<option value="総合運">総合運</option>
+</select>
+<button onclick="fortune()">無料で占ってみる</button>
+<div id="result"></div>
+</div>
+<script>
+function fortune(){
+const name=document.getElementById("name").value.trim();
+const birthday=document.getElementById("birthday").value;
+const theme=document.getElementById("theme").value;
+const result=document.getElementById("result");
+if(!name||!birthday){
+result.textContent="お名前と生年月日を入力してください。";
+return;
+}
+const messages=[
+"新しい可能性が広がる時期です。小さな一歩を大切にしましょう。",
+"身近な人との会話が、新しい気づきにつながりそうです。",
+"焦らず準備を整えることで、チャンスをつかめそうです。"
+];
+const seed=[...birthday+theme].reduce((a,c)=>a+c.charCodeAt(0),0);
+result.textContent=name+"さんの"+theme+"\n\n✨ "+messages[seed%messages.length]+"\n\n※現在は無料体験用のサンプル鑑定です。";
+}
+</script>
+</body>
+</html>
